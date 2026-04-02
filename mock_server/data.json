@@ -1,0 +1,57 @@
+{
+  "disaster_type": "Flood",
+  "confidence": "94%",
+  "location": "Kottayam, Kerala",
+  "time": "11:38 PM",
+  "flood_detected": true,
+  "event_id": "EVT-2025-11-18-IND-KER - 000427",
+  "water_depth": "3.8 ft (NH-183)",
+  "affected_areas": "Kottayam District",
+  "bridge_status": "Bridge Collapsed, Severe",
+  "keywords": [
+    "Overflow",
+    "Evacuation",
+    "Heavy Rainfall"
+  ],
+  "alerts": [
+    "Family trapped on rooftop, water rising"
+  ],
+  "route_alert": "Bridge over NH-183 collapsed",
+  "detections": [
+    "Water Detected",
+    "Road Submerged",
+    "People Seen"
+  ],
+  "impact_zones": [
+    {
+      "level": "High Risk",
+      "area": "Athirampuzha",
+      "color": "red"
+    },
+    {
+      "level": "Medium Risk",
+      "area": "Changanassery",
+      "color": "orange"
+    }
+  ],
+  "road_status": "Submerged",
+  "flood_spread": "High",
+  "resources": {
+    "boats": 6,
+    "helicopters": 1,
+    "medical": 3,
+    "shelters": 4
+  },
+  "rs_station": "Kottayam Boat Launch",
+  "rs_coords": "9.66812",
+  "current_actions": [
+    "Evacuations Underway in Athirampuzha",
+    "Assess NH-183 for Helicopter Landing",
+    "Coordinate Rescue Units with SOS Reports"
+  ],
+  "ai_assessment": "Severe flood with trapped civilians in Kottayam district, Kerala. SAR indicates high water depth and bridge collapse: Boat and helicopter required.",
+  "recommended_resources": [
+    "Boat",
+    "Helicopter"
+  ]
+}

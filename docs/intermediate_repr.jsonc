@@ -1,0 +1,151 @@
+{
+  "event_id": "evt-2025-11-18-IND-KER-00042",
+  "event_timestamp_utc": "2025-11-18T02:47:33Z",
+  "event_source": {
+    "sensor_types": ["SAR", "OPTICAL", "SOS"],
+    "platforms": ["Sentinel-1", "UAV", "MobileNetwork"],
+    "ingestion_confidence": 0.94
+  },
+
+  "geospatial_context": {
+    "coordinate_system": "WGS84",
+    "bounding_box": {
+      "min_lat": 9.5932,
+      "max_lat": 9.6179,
+      "min_lon": 76.5221,
+      "max_lon": 76.5518
+    },
+    "centroid": {
+      "lat": 9.6053,
+      "lon": 76.5386
+    },
+    "administrative_regions": {
+      "country": "India",
+      "state": "Kerala",
+      "district": "Kottayam",
+      "locality": "Kumarakom"
+    }
+  },
+
+  "disaster_classification": {
+    "primary_type": "Flood",
+    "secondary_effects": [
+      "InfrastructureCollapse",  // from SAR analysis
+      "RoadSubmergence" // from SAR (synthetic aperture radar) analysis and SOS reports
+    ],
+    "severity_score": 0.91,
+    "severity_label": "Severe",
+    "confidence": 0.92
+  },
+
+  "perception_outputs": {
+    "human_detection": {
+      "detected": true,
+      "model": "YOLOv8",
+      "victim_count_estimate": {
+        "min": 8,
+        "max": 15,
+        "confidence": 0.81
+      },
+      "bounding_boxes": [
+        {
+          "lat": 9.6049,
+          "lon": 76.5391,
+          "bbox_area_m2": 3.1,
+          "confidence": 0.88
+        }
+        // ...
+      ]
+    },
+
+    "sar_analysis": {
+      "model": "ViT-SAR",
+      "flood_extent_ratio": 0.63,
+      "water_depth_estimate_m": {
+        "min": 0.8,
+        "max": 2.4
+      },
+      "terrain_deformation": {
+        "detected": false
+      },
+      "infrastructure_damage": [
+        {
+          "type": "Bridge",
+          "status": "Collapsed",
+          "confidence": 0.86
+        }
+      ]
+    }
+  },
+
+  "routing_constraints": {
+    "blocked_roads": [
+      {
+        "road_id": "NH-183",
+        "reason": "Submerged",
+        "confidence": 0.9
+      }
+    ],
+    "viable_transport_modes": ["Boat", "Helicopter"],
+    "landing_zones": [
+      {
+        "type": "Helicopter",
+        "lat": 9.6081,
+        "lon": 76.5412,
+        "suitability_score": 0.78
+      }
+    ]
+  },
+
+  // feedback loop from SOS and field reports to update the situation awareness and response planning
+  "sos_and_field_reports": [
+    {
+      "source": "WhatsApp",
+      "timestamp_utc": "2025-11-18T02:41:12Z",
+      "message_summary": "Family trapped on rooftop, water rising",
+      "language": "en",
+      "credibility_score": 0.76
+    }
+  ],
+
+  // from the RAG system that integrates historical data and real-time perception 
+  // outputs to generate actionable insights
+  // planning to use LLMs to synthesize the information and suggest response actions
+  "recommended_actions": {
+    "priority_level": "P1",
+    "suggested_response": [
+      "ImmediateBoatRescue",
+      "PowerGridShutdown"
+    ],
+    "estimated_time_to_intervention_min": 35
+  },
+
+  "rag_metadata": {
+    "embedding_text": "Severe flood with trapped civilians in Kottayam district, Kerala. SAR indicates high water depth and bridge collapse. Boat and helicopter rescue required.",
+    "retrieval_tags": [
+      "flood",
+      "night-time",
+      "SAR",
+      "human-detection",
+      "bridge-collapse",
+      "Kerala"
+    ],
+    "linked_historical_events": [
+      "evt-2018-KER-FLOOD-0012"
+    ]
+  },
+
+  "audit_and_traceability": {
+    "generated_by": [
+      "YOLOv8",
+      "ViT-SAR",
+      "LangChain-RAG",
+      "LangGraph-Agents"
+    ],
+    "decision_explanations": [
+      "High severity due to combined flood extent and detected human presence",
+      "Routing restricted due to submerged national highway"
+    ],
+    "last_updated_utc": "2025-11-18T02:52:10Z"
+  }
+}
