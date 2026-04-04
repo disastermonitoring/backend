@@ -1,0 +1,2 @@
+"""SOS communication abstractions."""
+

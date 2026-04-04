@@ -1,0 +1,2 @@
+"""Perception adapters and contracts."""
+
