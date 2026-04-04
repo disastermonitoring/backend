@@ -2,7 +2,7 @@ import asyncio
 import json
 from pathlib import Path
 from typing import Annotated
-, Path
+
 from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sse_starlette.sse import EventSourceResponse
