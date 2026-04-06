@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from disaster_response.main import app  # noqa: E402
+from main import app  # noqa: E402
 
 
 

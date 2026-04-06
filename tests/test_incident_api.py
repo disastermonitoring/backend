@@ -2,27 +2,28 @@ import asyncio
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from disaster_response.communications.mock import LoggingSOSChannel  # noqa: E402
-from disaster_response.contracts.events import Coordinate, FloodZone, OpticalAnalysisResult, SarAnalysisResult  # noqa: E402
-from disaster_response.contracts.incident import FieldAcknowledgement, SOSMessage  # noqa: E402
-from disaster_response.contracts.rag import RagContextItem, RagResult  # noqa: E402
-from disaster_response.perception.mock import MockOpticalModelAdapter, MockSarModelAdapter  # noqa: E402
-from disaster_response.planning.service import PlanningService  # noqa: E402
-from disaster_response.projection.dashboard import DashboardProjector  # noqa: E402
-from disaster_response.rag.mock import NullRagProvider  # noqa: E402
-from disaster_response.services.incidents import IncidentService  # noqa: E402
-from disaster_response.state.store import InMemoryIncidentStore  # noqa: E402
+from src.disaster_response.communications.mock import LoggingSOSChannel  # noqa: E402
+from src.disaster_response.contracts.events import Coordinate, FloodZone, OpticalAnalysisResult, SarAnalysisResult  # noqa: E402
+from src.disaster_response.contracts.incident import FieldAcknowledgement, SOSMessage  # noqa: E402
+from src.disaster_response.contracts.rag import RagContextItem, RagResult  # noqa: E402
+from src.disaster_response.perception.mock import MockOpticalModelAdapter, MockSarModelAdapter  # noqa: E402
+from src.disaster_response.planning.service import PlanningService  # noqa: E402
+from src.disaster_response.projection.dashboard import DashboardProjector  # noqa: E402
+from src.disaster_response.rag.mock import NullRagProvider  # noqa: E402
+from src.disaster_response.services.incidents import IncidentService  # noqa: E402
+from src.disaster_response.state.store import InMemoryIncidentStore  # noqa: E402
 
 
 def build_service() -> IncidentService:
+    rag_provider = NullRagProvider()
     return IncidentService(
         store=InMemoryIncidentStore(),
-        rag_provider=NullRagProvider(),
+        rag_provider=rag_provider,
         optical_adapter=MockOpticalModelAdapter(),
         sar_adapter=MockSarModelAdapter(),
-        planner=PlanningService(),
+        planner=PlanningService(rag_provider=rag_provider),
         projector=DashboardProjector(),
         communication_channels={
             "sms": LoggingSOSChannel("sms"),
