@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from disaster_response.contracts.rag import RagQuery, RagResult
+from src.disaster_response.contracts.rag import RagQuery, RagResult
 
 
 class RagProvider(ABC):

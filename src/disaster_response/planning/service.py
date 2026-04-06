@@ -1,17 +1,17 @@
 from datetime import UTC, datetime
 from typing import Literal
 
-from disaster_response.contracts.dashboard import ResourcePayload
-from disaster_response.contracts.incident import IncidentState, PlanningState
-from disaster_response.contracts.rag import RagQuery, RagResult
-from disaster_response.core.logging_config import get_logger
-from disaster_response.rag.base import RagProvider
-from disaster_response.rag.mock import NullRagProvider
+from src.disaster_response.contracts.dashboard import ResourcePayload
+from src.disaster_response.contracts.incident import IncidentState, PlanningState
+from src.disaster_response.contracts.rag import RagQuery, RagResult
+from src.disaster_response.core.logging_config import get_logger
+from src.disaster_response.rag.base import RagProvider
+from src.disaster_response.rag.mock import NullRagProvider
 
 
 class PlanningService:
-    def __init__(self, rag_provider: RagProvider | None = None) -> None:
-        self._rag_provider = rag_provider or NullRagProvider()
+    def __init__(self, rag_provider: RagProvider) -> None:
+        self._rag_provider = rag_provider
         self._logger = get_logger("disaster_response.decisions")
 
     async def refresh(self, incident: IncidentState) -> IncidentState:
@@ -123,9 +123,10 @@ class PlanningService:
             if (acknowledgement.note or acknowledgement.message)
         )
 
-        ai_assessment = self._build_summary(incident)
         if rag_result.summary and rag_result.summary != "RAG provider not configured.":
             ai_assessment = rag_result.summary
+        else:
+            ai_assessment = self._build_summary(incident)
 
         impact_zones = [
             {

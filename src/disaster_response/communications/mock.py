@@ -1,5 +1,5 @@
-from disaster_response.communications.base import SOSCommunicationChannel
-from disaster_response.core.logging_config import get_logger
+from src.disaster_response.communications.base import SOSCommunicationChannel
+from src.disaster_response.core.logging_config import get_logger
 
 
 class LoggingSOSChannel(SOSCommunicationChannel):

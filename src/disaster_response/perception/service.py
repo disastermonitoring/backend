@@ -1,6 +1,6 @@
-from disaster_response.contracts.events import OpticalAnalysisResult, SarAnalysisResult, SensorFrame
-from disaster_response.core.logging_config import get_logger
-from disaster_response.perception.base import OpticalModel, SarModel
+from src.disaster_response.contracts.events import OpticalAnalysisResult, SarAnalysisResult, SensorFrame
+from src.disaster_response.core.logging_config import get_logger
+from src.disaster_response.perception.base import OpticalModel, SarModel
 
 
 class PerceptionService:

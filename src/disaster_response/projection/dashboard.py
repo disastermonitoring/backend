@@ -1,5 +1,5 @@
-from disaster_response.contracts.dashboard import DashboardPayload, ImpactZonePayload, ResourcePayload
-from disaster_response.contracts.incident import IncidentState
+from src.disaster_response.contracts.dashboard import DashboardPayload, ImpactZonePayload, ResourcePayload
+from src.disaster_response.contracts.incident import IncidentState
 
 
 class DashboardProjector:

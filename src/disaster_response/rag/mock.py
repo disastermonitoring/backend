@@ -1,5 +1,5 @@
-from disaster_response.contracts.rag import RagQuery, RagResult
-from disaster_response.rag.base import RagProvider
+from src.disaster_response.contracts.rag import RagQuery, RagResult
+from src.disaster_response.rag.base import RagProvider
 
 
 class NullRagProvider(RagProvider):

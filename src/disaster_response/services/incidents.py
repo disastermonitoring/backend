@@ -1,16 +1,16 @@
 from datetime import UTC, datetime
 
-from disaster_response.communications.base import SOSCommunicationChannel
-from disaster_response.contracts.dashboard import DashboardPayload
-from disaster_response.contracts.events import OpticalAnalysisResult, SarAnalysisResult, SensorFrame
-from disaster_response.contracts.incident import FieldAcknowledgement, IncidentState, SOSMessage
-from disaster_response.contracts.rag import RagQuery, RagResult
-from disaster_response.core.logging_config import get_logger
-from disaster_response.perception.base import OpticalModelAdapter, SarModelAdapter
-from disaster_response.planning.service import PlanningService
-from disaster_response.projection.dashboard import DashboardProjector
-from disaster_response.rag.base import RagProvider
-from disaster_response.state.store import InMemoryIncidentStore
+from src.disaster_response.communications.base import SOSCommunicationChannel
+from src.disaster_response.contracts.dashboard import DashboardPayload
+from src.disaster_response.contracts.events import OpticalAnalysisResult, SarAnalysisResult, SensorFrame
+from src.disaster_response.contracts.incident import FieldAcknowledgement, IncidentState, SOSMessage
+from src.disaster_response.contracts.rag import RagQuery, RagResult
+from src.disaster_response.core.logging_config import get_logger
+from src.disaster_response.perception.base import OpticalModelAdapter, SarModelAdapter
+from src.disaster_response.planning.service import PlanningService
+from src.disaster_response.projection.dashboard import DashboardProjector
+from src.disaster_response.rag.base import RagProvider
+from src.disaster_response.state.store import InMemoryIncidentStore
 
 
 class IncidentService:
@@ -133,6 +133,8 @@ class IncidentService:
         incident = await self._get_or_create(result.event_id)
         incident.rag_result = result
         incident.rag_summary = result.summary
+        incident.rag_context_titles = [item.title for item in result.context_items]
+        incident.rag_recommended_actions = result.recommended_actions
         incident.updated_at = datetime.now(UTC)
         incident.version += 1
         incident = self.planner.recompute(incident)
@@ -152,6 +154,12 @@ class IncidentService:
             location=incident.location,
             summary=incident.ai_assessment,
             keywords=incident.keywords,
+            coordinate=incident.coordinate,
+            flood_detected=incident.flood_detected,
+            flood_seriousness=incident.flood_seriousness,
+            estimated_water_depth_ft=incident.sar.estimated_water_depth_ft,
+            affected_areas=incident.affected_areas,
+            humans_detected=incident.optical.humans_detected,
         )
         result = await self.rag_provider.enrich(rag_query)
         return await self.record_rag_result(result)

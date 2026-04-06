@@ -1,7 +1,7 @@
 import asyncio
 
-from disaster_response.contracts.events import SensorFrame
-from disaster_response.ingestion.base import SensorStreamSource
+from src.disaster_response.contracts.events import SensorFrame
+from src.disaster_response.ingestion.base import SensorStreamSource
 
 
 class InMemorySensorStream(SensorStreamSource):

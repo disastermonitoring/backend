@@ -1,7 +1,7 @@
 import logging
 import logging.config
 
-from disaster_response.core.settings import (
+from src.disaster_response.core.settings import (
     APP_LOG_FILE,
     COMMUNICATION_LOG_FILE,
     DECISION_LOG_FILE,
@@ -103,4 +103,3 @@ def configure_logging() -> None:
 
 def get_logger(name: str) -> logging.Logger:
     return logging.getLogger(name)
-

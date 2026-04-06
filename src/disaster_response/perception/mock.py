@@ -1,4 +1,4 @@
-from disaster_response.contracts.events import (
+from src.disaster_response.contracts.events import (
     Coordinate,
     FloodZone,
     HumanDetection,
@@ -6,7 +6,7 @@ from disaster_response.contracts.events import (
     SarAnalysisResult,
     SensorFrame,
 )
-from disaster_response.perception.base import OpticalModelAdapter, SarModelAdapter
+from src.disaster_response.perception.base import OpticalModelAdapter, SarModelAdapter
 
 
 def _token_number(raw_value: str) -> int:

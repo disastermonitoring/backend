@@ -3,15 +3,15 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from disaster_response.contracts.dashboard import ResourcePayload
-from disaster_response.contracts.events import (
+from src.disaster_response.contracts.dashboard import ResourcePayload
+from src.disaster_response.contracts.events import (
     Coordinate,
     FloodZone,
     HumanDetection,
     OpticalAnalysisResult,
     SarAnalysisResult,
 )
-from disaster_response.contracts.rag import RagResult
+from src.disaster_response.contracts.rag import RagResult
 
 
 ThreatPriority = Literal["P1", "P2", "P3"]

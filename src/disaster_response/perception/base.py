@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-from disaster_response.contracts.events import OpticalAnalysisResult, SarAnalysisResult, SensorFrame
+from src.disaster_response.contracts.events import OpticalAnalysisResult, SarAnalysisResult, SensorFrame
 
 
 class OpticalModel(ABC):

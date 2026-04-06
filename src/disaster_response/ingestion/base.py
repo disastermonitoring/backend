@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from disaster_response.contracts.events import SensorFrame
+from src.disaster_response.contracts.events import SensorFrame
 
 
 class SensorStreamSource(ABC):

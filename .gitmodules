@@ -1,0 +1,3 @@
+[submodule "src/rag"]
+	path = src/rag
+	url = https://github.com/disastermonitoring/rag

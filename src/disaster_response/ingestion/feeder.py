@@ -5,9 +5,9 @@ from pathlib import Path
 
 from pydantic import BaseModel, Field
 
-from disaster_response.contracts.events import Coordinate, SensorFrame
-from disaster_response.core.logging_config import get_logger
-from disaster_response.services.incidents import IncidentService
+from src.disaster_response.contracts.events import Coordinate, SensorFrame
+from src.disaster_response.core.logging_config import get_logger
+from src.disaster_response.services.incidents import IncidentService
 
 
 IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".tif", ".tiff"}

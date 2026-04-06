@@ -2,7 +2,7 @@ import asyncio
 from collections import defaultdict
 from threading import RLock
 
-from disaster_response.contracts.incident import IncidentState
+from src.disaster_response.contracts.incident import IncidentState
 
 
 class InMemoryIncidentStore:
